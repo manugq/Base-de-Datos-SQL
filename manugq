@@ -1,0 +1,32 @@
+CREATE TABLE flota(
+
+  
+  matricula VARCHAR(10) NOT NULL PRIMARY KEY,
+  marca VARCHAR(20) NOT NULL,
+  modelo VARCHAR(20) NOT NULL,
+  marca_española  BOOLEAN NOT NULL,
+  fecha_compra DATE NOT NULL,
+  precio_diario float NOT NULL,
+  nombre_distribuidor VARCHAR(20) NOT NULL,
+  FOREIGN KEY (nombre_distribuidor) REFERENCES distribuidor(nombre)
+);
+
+CREATE TABLE distribuidor (
+  nombre VARCHAR(20) NOT NULL PRIMARY KEY,
+  direccion VARCHAR(30) NOT NULL,
+  ciudad VARCHAR(15) NOT NULL,
+  telefono VARCHAR(10),
+  email VARCHAR(30)  
+);
+
+CREATE TABLE alquileres(
+numero_servicios INT(4) auto_increment PRIMARY KEY,
+matricula VARCHAR(10) NOT NULL,
+fecha_salida DATE NOT NULL,
+fecha_entrada DATE NOT NULL,
+dni_usuario VARCHAR(10),
+telefono_usuario VARCHAR(10),
+observaciones VARCHAR(100),
+FOREIGN KEY (matricula) REFERENCES flota(matricula)
+
+);
